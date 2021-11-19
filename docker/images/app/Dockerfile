@@ -7,4 +7,6 @@ RUN apk update \
 
 WORKDIR /project/VelaStationWeb
 ADD ./vela_station/* .
+
+RUN npm upgrade
 RUN npm install
