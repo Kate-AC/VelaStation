@@ -80,7 +80,7 @@ const AbductedTierSystemPanel = () => {
           />
         </div>
         <ZoomOut>
-          <img src='/images/hero/hero02.jpg' />
+          <img src='/images/hero/hero02.jpg' alt='This is the hero image number 2.' />
         </ZoomOut>
       </div>
     </AbductedTierSystemPanelStyled>
