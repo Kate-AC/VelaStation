@@ -3,12 +3,18 @@
 Hello everyone.
 This is the VelaStation community site.
 
-It's made with Next.js + TypeScript.
+It's made with Next.js + TypeScript.  
+It was originally created in WordPrass,  
+but I recreated it because it is not easy to maintain  
+and the development environment is difficult to distribute.
+
 
 ## Guide board
 TG (Community): https://t.me/VelaStation_Terrans  
 TG: https://t.me/VelaStation  
 Twitter: https://twitter.com/StationVelas  
+WebSite(Original): http://velastation.com/  
+WebSite(This Repository): https://vela-station.vercel.app/
 
 ## For Developers
 
