@@ -1,0 +1,17 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/images/app/Dockerfile
+    command: npm run dev
+    tty: true
+    env_file: ./.env
+    volumes:
+      - ./vela_station:/project/VelaStationWeb:cached
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    ports:
+      - 53000:3000
+    networks:
+      default:
