@@ -26,6 +26,8 @@ About the development flow
 - Deploy manually with the merged Vercel. (We will automate this process with GithubAction)
 
 ## Building the environment
+**Docker is required for installation!**
+
 - make build
 - make run
 - Access to http://localhost:53000/
