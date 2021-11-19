@@ -27,6 +27,7 @@ const VelaStation = () => {
           src='/images/logo/V.png'
           width={148}
           height={140}
+          alt="This is VelaStation's symbol."
         />
         <span className='vela-station__text'>
           elaStation

@@ -107,7 +107,7 @@ const VelaStationPanel = () => {
           <TypeWriter text='CONTRACT：0xaf472e8ed4f13f2e47e748f7869bfb6f9093d2b0' duration={1.5} />
         </div>
         <ZoomOut>
-          <img src='/images/hero/hero01.jpg' />
+          <img src='/images/hero/hero01.jpg' alt='This is the hero image number 1.' />
         </ZoomOut>
       </div>
     </VelaStationPanelStyled>

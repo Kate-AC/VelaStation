@@ -72,7 +72,7 @@ const TokenomicsPanel = () => {
           <DefaultButton text='TOKENOMICS TO BE ANNOUNCED' type='large' />
         </div>
         <ZoomOut>
-          <img src='/images/hero/hero03.jpg' />
+          <img src='/images/hero/hero03.jpg' alt='This is the hero image number 3.' />
         </ZoomOut>
       </div>
     </TokenomicsPanelStyled>

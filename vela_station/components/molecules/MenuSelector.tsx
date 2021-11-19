@@ -105,8 +105,9 @@ const MenuSelector = () => {
             animation
           ].join(' ')}>
             {
-              menuList.map((item: MenuItemType) => (
+              menuList.map((item: MenuItemType, key: number) => (
                 <MenuItem
+                  key={key}
                   title={item.title}
                   number={item.number}
                   thumbnail={item.thumbnail}

@@ -80,7 +80,7 @@ const LaunchPadOfThePastPanel = () => {
           />
         </div>
         <ZoomOut>
-          <img src='/images/hero/hero04.jpg' />
+          <img src='/images/hero/hero04.jpg' alt='This is the hero image number 4.' />
         </ZoomOut>
       </div>
     </LaunchPadOfThePastPanelStyled>

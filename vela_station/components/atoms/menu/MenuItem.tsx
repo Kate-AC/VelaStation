@@ -66,6 +66,7 @@ const MenuItem = (props: MenuItemType & { clickEvent: () => void; }) => {
           height={70}
           width={70}
           src={ props.thumbnail }
+          alt='This is each page thumbnail.'
         />
         <div className='menu-item__content'>
           <div className='menu-item__content--number'>
