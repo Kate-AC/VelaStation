@@ -4,6 +4,7 @@ import TypeWriter from 'styles/effects/TypeWriter';
 import ZoomOut from 'styles/effects/ZoomOut';
 import DefaultButton from 'components/atoms/DefaultButton';
 import Headline from 'components/atoms/Headline';
+import VSTransition from 'styles/effects/VSTransition';
 
 const TokenomicsPanelStyled = styled.div`
   .tokenomics-panel {
@@ -46,8 +47,9 @@ const TokenomicsPanelStyled = styled.div`
   }
 `;
 
-const TokenomicsPanel = (props: { delay?: number }) => {
+const TokenomicsPanel = (props: { delay?: number; stop?: boolean; }) => {
   const delay: number = props.delay === undefined ? 0 : props.delay;
+  const stop: boolean = props.stop === undefined ? false : props.stop;
 
   return (
     <TokenomicsPanelStyled>
@@ -73,9 +75,11 @@ const TokenomicsPanel = (props: { delay?: number }) => {
         <div className='tokenomics-panel__button'>
           <DefaultButton text='TOKENOMICS TO BE ANNOUNCED' type='large' />
         </div>
-        <ZoomOut delay={delay}>
-          <img src='/images/hero/hero03.jpg' alt='This is the hero image number 3.' />
-        </ZoomOut>
+        <VSTransition stop={stop}>
+          <ZoomOut delay={delay}>
+            <img src='/images/hero/hero03.jpg' alt='This is the hero image number 3.' />
+          </ZoomOut>
+        </VSTransition>
       </div>
     </TokenomicsPanelStyled>
   );

@@ -30,7 +30,6 @@ const ZoomOutStyled = styled.div`
       height: 100vh;
       min-width: 100vw;
       object-fit: cover;
-      transform: scale(1.2);
     }
   }
 `;

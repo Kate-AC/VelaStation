@@ -5,6 +5,7 @@ import ZoomOut from 'styles/effects/ZoomOut';
 import DefaultButton from 'components/atoms/DefaultButton';
 import GlassFrame from 'components/molecules/GlassFrame';
 import Headline from 'components/atoms/Headline';
+import VSTransition from 'styles/effects/VSTransition';
 
 const AbductedTierSystemPanelStyled = styled.div`
   .tier-system-panel {
@@ -49,8 +50,9 @@ const AbductedTierSystemPanelStyled = styled.div`
   }
 `;
 
-const AbductedTierSystemPanel = (props: { delay?: number }) => {
+const AbductedTierSystemPanel = (props: { delay?: number; stop?: boolean; }) => {
   const delay: number = props.delay === undefined ? 0 : props.delay;
+  const stop: boolean = props.stop === undefined ? false : props.stop;
 
   return (
     <AbductedTierSystemPanelStyled>
@@ -81,9 +83,11 @@ const AbductedTierSystemPanel = (props: { delay?: number }) => {
             type='small'
           />
         </div>
-        <ZoomOut delay={delay}>
-          <img src='/images/hero/hero02.jpg' alt='This is the hero image number 2.' />
-        </ZoomOut>
+        <VSTransition stop={stop}>
+          <ZoomOut delay={delay}>
+            <img src='/images/hero/hero02.jpg' alt='This is the hero image number 2.' />
+          </ZoomOut>
+        </VSTransition>
       </div>
     </AbductedTierSystemPanelStyled>
   );

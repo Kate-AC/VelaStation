@@ -11,24 +11,29 @@ const TvStaticStyled = styled.div.attrs((props: { opacity: number }) => ({
 
     &__filter {
       position: absolute;
-      top: 0;
-      left: 0;
-      height: 100vh;
-      width: 100vw;
-      background-image: url('/images/effect/tvstatic4.gif');
-      background-repeat: no-repeat;
-      background-size: cover;
+      top: -50px;
+      left:-50px;
+      height: calc(100vh + 100px);
+      width: calc(100vw + 100px);
+      background: repeating-linear-gradient(#ccc, #ccc 50%, transparent 50%, transparent);
+      background-size: 5px 5px;
+      filter: url(#noise);
       opacity: ${props => props.opacity};
-      mix-blend-mode: overlay;
+      mix-blend-mode: exclusion;
       z-index: ${zIndexes.tvStaticEffect};
+
+      svg {
+        width: 0;
+        height: 0;
+      }      
     }
   }
 `;
 
 const MIN_OPACITY = 0;
-const MAX_OPACITY = 0.3;
-const ABS_OPACITY = 0.05;
-const CYCLE_OPACITY = 300;
+const MAX_OPACITY = 0.8;
+const ABS_OPACITY = 0.1;
+const CYCLE_OPACITY = 100;
 
 const TvStatic = (props: { children: React.ReactElement, delay?: number, reverse?: boolean }) => {
   const delay = props.delay === undefined ? 0 : props.delay;
@@ -64,7 +69,22 @@ const TvStatic = (props: { children: React.ReactElement, delay?: number, reverse
   return (
     <TvStaticStyled opacity={opacity}>
       <div className='tv-static'>
-        <div className={started ? 'tv-static__filter' : ''} />
+        <div className={started ? 'tv-static__filter' : ''}>
+          <svg>
+            <filter id="noise">
+              <feTurbulence id="turbulence">
+                <animate
+                  attributeName="baseFrequency"
+                  dur="50s"
+                  values="0.9 0.9;0.8 0.8; 0.9 0.9"
+                  repeatCount="indefinite"
+                ></animate>
+              </feTurbulence>
+              <feDisplacementMap in="SourceGraphic" scale="60"></feDisplacementMap>
+            </filter>
+          </svg>
+        </div>
+
         { props.children }
       </div>
     </TvStaticStyled>

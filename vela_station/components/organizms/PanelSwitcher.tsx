@@ -25,7 +25,7 @@ const PanelSwitcherStyled = styled.div`
         &.fadeout {
           animation-name: fadeOut;
           animation-fill-mode: forwards;
-          animation-duration: 2s;
+          animation-duration: 0.8s;
           animation-timing-function: linear;
         }
       }
@@ -52,9 +52,16 @@ const PanelSwitcher = (props: { children: React.ReactNode }) => {
     setNextPanel(panelList[clickedMenu - 1]);
 
     setTimeout(() => {
-      setCurrentPanel(panelList[clickedMenu - 1]);
+      setCurrentPanel(
+        cloneElement(
+          panelList[clickedMenu - 1],
+          {
+            stop: true,
+          }
+        )
+      );
       setFadeOut(false);
-    }, 2000);
+    }, 800);
   }, [clickedMenu]);
 
   return (
@@ -69,12 +76,7 @@ const PanelSwitcher = (props: { children: React.ReactNode }) => {
           </div>
           <div className='panel-switcher__panel--next'>
             {
-              cloneElement(
-                nextPanel,
-                {
-                  delay: 3,
-                }
-              )
+              cloneElement(nextPanel, { delay: 3 })
             }
           </div>
         </div>

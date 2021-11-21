@@ -3,7 +3,8 @@ import Linear from 'styles/effects/Linear';
 import TvStatic from 'styles/effects/TvStatic';
 import styled from 'styled-components';
 import { zIndexes } from 'styles/variables';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { getSelectMenuState } from 'contexts/SelectMenuContext';
 
 const VSTransitionStyled = styled.div`
   .vs-transition {
@@ -22,13 +23,29 @@ const VSTransitionStyled = styled.div`
     height: 100vh;
     width: 100vw;
     z-index: ${zIndexes.heroImage};
+    transform: scale(1.2);
+    object-fit: cover;
   }
 `;
 
-const VSTransition = (props: { children: React.ReactElement, delay?: number, reverse?: boolean }) => {
+const VSTransition = (props: { children: React.ReactElement; delay?: number; reverse?: boolean; stop?: boolean }) => {
   const delay = props.delay === undefined ? 0 : props.delay;
-  const reverse = props.reverse === undefined ? false : props.reverse;
   const [started, setStarted] = useState(false);
+  const { clickedMenu } = getSelectMenuState();
+  const [currentMenu, setCurrentMenu] = useState(clickedMenu);
+  const [reverse, setReverse] = useState(props.reverse === undefined ? false : props.reverse);
+  const [stop, setStop] = useState(props.stop === undefined ? false : props.stop);
+
+  useEffect(() => {
+    if (currentMenu === clickedMenu) {
+      return;
+    }
+
+    setStop(false);
+    setStarted(true);
+    setReverse(false);
+    setCurrentMenu(clickedMenu);
+  }, [clickedMenu]);
 
   setTimeout(() => {
     setStarted(true);
@@ -45,15 +62,21 @@ const VSTransition = (props: { children: React.ReactElement, delay?: number, rev
   return (
     <VSTransitionStyled>
       <div className='vs-transition'>
-        <div className={started ? 'vs-transition__filter' : ''}>
-          <TvStatic reverse={reverse}>
-            <Linear reverse={reverse}>
-              <Glitch reverse={reverse}>
-                <img src={img.props.src} alt={img.props.alt} />
-              </Glitch>
-            </Linear>
-          </TvStatic>
-        </div>
+        {
+          stop ? (
+            <></>
+          ) : (
+            <div className={started ? 'vs-transition__filter' : ''}>
+              <TvStatic reverse={reverse}>
+                <Linear reverse={reverse}>
+                  <Glitch reverse={reverse}>
+                    <img src={img.props.src} alt={img.props.alt} />
+                  </Glitch>
+                </Linear>
+              </TvStatic>
+            </div>
+          )
+        }
       </div>
       { props.children }
     </VSTransitionStyled>

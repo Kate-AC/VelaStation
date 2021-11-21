@@ -21,6 +21,7 @@ const GlitchStyled = styled.div.attrs((props: { opacity: number }) => ({
       left: 0;
       width: 100vw;
       z-index: ${zIndexes.glitchEffect};
+      transform: scale(1.2);
 
       &::before,
       &::after,

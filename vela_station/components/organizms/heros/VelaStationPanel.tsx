@@ -70,8 +70,9 @@ const VelaStationPanelStyled = styled.div`
   }
 `;
 
-const VelaStationPanel = (props: { delay?: number }) => {
+const VelaStationPanel = (props: { delay?: number; stop?: boolean; }) => {
   const delay: number = props.delay === undefined ? 0 : props.delay;
+  const stop: boolean = props.stop === undefined ? false : props.stop;
 
   return (
     <VelaStationPanelStyled>
@@ -108,15 +109,12 @@ const VelaStationPanel = (props: { delay?: number }) => {
         <div className='vela-station-panel__contract'>
           <TypeWriter text='CONTRACT：0xaf472e8ed4f13f2e47e748f7869bfb6f9093d2b0' duration={1.5} delay={delay} />
         </div>
-{/*
-        <VSTransition reverse={true}>
-        </VSTransition>
-*/}
 
+        <VSTransition stop={stop}>
           <ZoomOut delay={delay}>
             <img src='/images/hero/hero01.jpg' alt='This is the hero image number 1.' />
           </ZoomOut>
-
+        </VSTransition>
       </div>
     </VelaStationPanelStyled>
   );

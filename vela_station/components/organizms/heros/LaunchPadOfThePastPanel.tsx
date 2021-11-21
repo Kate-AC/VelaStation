@@ -5,6 +5,7 @@ import ZoomOut from 'styles/effects/ZoomOut';
 import DefaultButton from 'components/atoms/DefaultButton';
 import GlassFrame from 'components/molecules/GlassFrame';
 import Headline from 'components/atoms/Headline';
+import VSTransition from 'styles/effects/VSTransition';
 
 const LaunchPadOfThePastPanelStyled = styled.div`
   .launch-pad {
@@ -49,8 +50,9 @@ const LaunchPadOfThePastPanelStyled = styled.div`
   }
 `;
 
-const LaunchPadOfThePastPanel = (props: { delay?: number }) => {
+const LaunchPadOfThePastPanel = (props: { delay?: number; stop?: boolean; }) => {
   const delay: number = props.delay === undefined ? 0 : props.delay;
+  const stop: boolean = props.stop === undefined ? false : props.stop;
 
   return (
     <LaunchPadOfThePastPanelStyled>
@@ -81,9 +83,11 @@ const LaunchPadOfThePastPanel = (props: { delay?: number }) => {
             type='small'
           />
         </div>
-        <ZoomOut delay={delay}>
-          <img src='/images/hero/hero04.jpg' alt='This is the hero image number 4.' />
-        </ZoomOut>
+        <VSTransition stop={stop}>
+          <ZoomOut delay={delay}>
+            <img src='/images/hero/hero04.jpg' alt='This is the hero image number 4.' />
+          </ZoomOut>
+        </VSTransition>
       </div>
     </LaunchPadOfThePastPanelStyled>
   );
