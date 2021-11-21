@@ -49,7 +49,9 @@ const LaunchPadOfThePastPanelStyled = styled.div`
   }
 `;
 
-const LaunchPadOfThePastPanel = () => {
+const LaunchPadOfThePastPanel = (props: { delay?: number }) => {
+  const delay: number = props.delay === undefined ? 0 : props.delay;
+
   return (
     <LaunchPadOfThePastPanelStyled>
       <div className='launch-pad'>
@@ -57,20 +59,20 @@ const LaunchPadOfThePastPanel = () => {
           <Headline title='Launchpad of the past...' />
         </div>
         <div className='launch-pad__block-1'>
-          <TypeWriter text='INCOMING TRANSMISSION . . .' duration={1.5} />
+          <TypeWriter text='INCOMING TRANSMISSION . . .' duration={1.5} delay={delay} />
         </div>
         <div className='launch-pad__frame'>
           <GlassFrame>
             <div className='launch-pad__frame-text'>
-              <TypeWriter text='The ideal platform for all terrans to come see us display the best and' duration={3} delay={1.5} /><br />
-              <TypeWriter text='most unnoticed spaceships that are about to take off to distant stars.' duration={3} delay={4.5} /><br />
-              <TypeWriter text='Our noble race feels that without the proper security protocols in place,' duration={3} delay={7.5} /><br />
-              <TypeWriter text='and marketing they may face grave danger on the way.' duration={3} delay={10.5} />
+              <TypeWriter text='The ideal platform for all terrans to come see us display the best and' duration={3} delay={1.5 + delay} /><br />
+              <TypeWriter text='most unnoticed spaceships that are about to take off to distant stars.' duration={3} delay={4.5 + delay} /><br />
+              <TypeWriter text='Our noble race feels that without the proper security protocols in place,' duration={3} delay={7.5 + delay} /><br />
+              <TypeWriter text='and marketing they may face grave danger on the way.' duration={3} delay={10.5 + delay} />
             </div>
           </GlassFrame>
         </div>
         <div className='launch-pad__block-2'>
-          <TypeWriter text='TRANSMISSION ENDED . . .' duration={1.5} delay={13.5} />
+          <TypeWriter text='TRANSMISSION ENDED . . .' duration={1.5} delay={13.5 + delay} />
         </div>
         <div className='launch-pad__button'>
           <DefaultButton
@@ -79,7 +81,7 @@ const LaunchPadOfThePastPanel = () => {
             type='small'
           />
         </div>
-        <ZoomOut>
+        <ZoomOut delay={delay}>
           <img src='/images/hero/hero04.jpg' alt='This is the hero image number 4.' />
         </ZoomOut>
       </div>

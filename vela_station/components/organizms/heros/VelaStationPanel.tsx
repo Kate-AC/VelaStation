@@ -3,11 +3,11 @@ import VelaStation from 'components/atoms/logos/VelaStation';
 import { fontSizes } from 'styles/variables';
 import TypeWriter from 'styles/effects/TypeWriter';
 import ZoomOut from 'styles/effects/ZoomOut';
+import VSTransition from 'styles/effects/VSTransition';
 import DefaultButton from 'components/atoms/DefaultButton';
 import GlassFrame from 'components/molecules/GlassFrame';
 import Telegram from 'components/atoms/icons/Telegram';
 import Twitter from 'components/atoms/icons/Twitter';
-import React from 'react';
 
 const VelaStationPanelStyled = styled.div`
   .vela-station-panel {
@@ -70,7 +70,9 @@ const VelaStationPanelStyled = styled.div`
   }
 `;
 
-const VelaStationPanel = () => {
+const VelaStationPanel = (props: { delay?: number }) => {
+  const delay: number = props.delay === undefined ? 0 : props.delay;
+
   return (
     <VelaStationPanelStyled>
       <div className='vela-station-panel'>
@@ -78,19 +80,19 @@ const VelaStationPanel = () => {
           <VelaStation />
         </div>
         <div className='vela-station-panel__block-1'>
-          <TypeWriter text='INCOMING TRANSMISSION . . .' duration={1.5} />
+          <TypeWriter text='INCOMING TRANSMISSION . . .' duration={1.5} delay={delay} />
         </div>
         <div className='vela-station-panel__frame'>
           <GlassFrame>
             <div className='vela-station-panel__frame--text'>
-              <TypeWriter text='The first community driven lounchpad on Velas chain! Aspiring to private the' duration={3} delay={1.5} /><br />
-              <TypeWriter text='the way for future de-fi projects, VelaStation offers a chance for all to' duration={3} delay={4.5} /><br />
-              <TypeWriter text='get in on the action with a fair and well structured their system.' duration={3} delay={7.5} />
+              <TypeWriter text='The first community driven lounchpad on Velas chain! Aspiring to private the' duration={3} delay={1.5 + delay} /><br />
+              <TypeWriter text='the way for future de-fi projects, VelaStation offers a chance for all to' duration={3} delay={4.5 + delay} /><br />
+              <TypeWriter text='get in on the action with a fair and well structured their system.' duration={3} delay={7.5 + delay} />
             </div>
           </GlassFrame>
         </div>
         <div className='vela-station-panel__block-2'>
-          <TypeWriter text='TRANSMISSION ENDED . . .' duration={1.5} delay={10.5} />
+          <TypeWriter text='TRANSMISSION ENDED . . .' duration={1.5} delay={10.5 + delay} />
         </div>
         <div className='vela-station-panel__buy'>
           <DefaultButton
@@ -104,11 +106,17 @@ const VelaStationPanel = () => {
           <Twitter />
         </div>
         <div className='vela-station-panel__contract'>
-          <TypeWriter text='CONTRACT：0xaf472e8ed4f13f2e47e748f7869bfb6f9093d2b0' duration={1.5} />
+          <TypeWriter text='CONTRACT：0xaf472e8ed4f13f2e47e748f7869bfb6f9093d2b0' duration={1.5} delay={delay} />
         </div>
-        <ZoomOut>
-          <img src='/images/hero/hero01.jpg' alt='This is the hero image number 1.' />
-        </ZoomOut>
+{/*
+        <VSTransition reverse={true}>
+        </VSTransition>
+*/}
+
+          <ZoomOut delay={delay}>
+            <img src='/images/hero/hero01.jpg' alt='This is the hero image number 1.' />
+          </ZoomOut>
+
       </div>
     </VelaStationPanelStyled>
   );

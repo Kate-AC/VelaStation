@@ -15,7 +15,7 @@ const MenuSelectorStyled = styled.div.attrs((props: { position: number }) => ({
     align-items: center;
     padding: 20px;
     height: 100%;
-    width: 100%;
+    width: 100vw;
 
     &-wrapper {
       display: flex;

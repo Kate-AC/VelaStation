@@ -49,7 +49,9 @@ const AbductedTierSystemPanelStyled = styled.div`
   }
 `;
 
-const AbductedTierSystemPanel = () => {
+const AbductedTierSystemPanel = (props: { delay?: number }) => {
+  const delay: number = props.delay === undefined ? 0 : props.delay;
+
   return (
     <AbductedTierSystemPanelStyled>
       <div className='tier-system-panel'>
@@ -57,20 +59,20 @@ const AbductedTierSystemPanel = () => {
           <Headline title='Abducted Tier System' />
         </div>
         <div className='tier-system-panel__block-1'>
-          <TypeWriter text='INCOMING TRANSMISSION . . .' duration={1.5} />
+          <TypeWriter text='INCOMING TRANSMISSION . . .' duration={1.5} delay={delay} />
         </div>
         <div className='tier-system-panel__frame'>
           <GlassFrame>
             <div className='tier-system-panel__frame-text'>
-              <TypeWriter text='Our abducted tier system offers a fair and equel opportunity for' duration={3} delay={1.5} /><br />
-              <TypeWriter text='everyone to be probed proportionately to their shares of the pool. No' duration={3} delay={4.5} /><br />
-              <TypeWriter text='less.. No more.. That has been our promise to the human race since our' duration={3} delay={7.5} /><br />
-              <TypeWriter text='first day on earth. Invasion of more information is imminent...' duration={3} delay={10.5} />
+              <TypeWriter text='Our abducted tier system offers a fair and equel opportunity for' duration={3} delay={1.5 + delay} /><br />
+              <TypeWriter text='everyone to be probed proportionately to their shares of the pool. No' duration={3} delay={4.5 + delay} /><br />
+              <TypeWriter text='less.. No more.. That has been our promise to the human race since our' duration={3} delay={7.5 + delay} /><br />
+              <TypeWriter text='first day on earth. Invasion of more information is imminent...' duration={3} delay={10.5 + delay} />
             </div>
           </GlassFrame>
         </div>
         <div className='tier-system-panel__block-2'>
-          <TypeWriter text='TRANSMISSION ENDED . . .' duration={1.5} delay={13.5} />
+          <TypeWriter text='TRANSMISSION ENDED . . .' duration={1.5} delay={13.5 + delay} />
         </div>
         <div className='tier-system-panel__button'>
           <DefaultButton
@@ -79,7 +81,7 @@ const AbductedTierSystemPanel = () => {
             type='small'
           />
         </div>
-        <ZoomOut>
+        <ZoomOut delay={delay}>
           <img src='/images/hero/hero02.jpg' alt='This is the hero image number 2.' />
         </ZoomOut>
       </div>

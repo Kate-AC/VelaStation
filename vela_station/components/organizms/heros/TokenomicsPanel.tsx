@@ -46,7 +46,9 @@ const TokenomicsPanelStyled = styled.div`
   }
 `;
 
-const TokenomicsPanel = () => {
+const TokenomicsPanel = (props: { delay?: number }) => {
+  const delay: number = props.delay === undefined ? 0 : props.delay;
+
   return (
     <TokenomicsPanelStyled>
       <div className='tokenomics-panel'>
@@ -54,24 +56,24 @@ const TokenomicsPanel = () => {
           <Headline title='Tokenomics' />
         </div>
         <div className='tokenomics-panel__name'>
-          <TypeWriter duration={1}>
+          <TypeWriter duration={1} delay={delay}>
             <Headline title='Name: VelaStation(VLXS)' type='small' />
           </TypeWriter>
         </div>
         <div className='tokenomics-panel__contract'>
-          <TypeWriter duration={2}>
+          <TypeWriter duration={2} delay={delay}>
             <Headline title='Contract: 0xaf472e8ed4f13f2e47e748f7869bfb6f9093d2b0' type='small' />
           </TypeWriter>
         </div>
         <div className='tokenomics-panel__supply'>
-          <TypeWriter duration={1}>
+          <TypeWriter duration={1} delay={delay}>
             <Headline title='Supply: 1,000,000,000' type='small' />
           </TypeWriter>
         </div>
         <div className='tokenomics-panel__button'>
           <DefaultButton text='TOKENOMICS TO BE ANNOUNCED' type='large' />
         </div>
-        <ZoomOut>
+        <ZoomOut delay={delay}>
           <img src='/images/hero/hero03.jpg' alt='This is the hero image number 3.' />
         </ZoomOut>
       </div>

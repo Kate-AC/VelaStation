@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import styled from 'styled-components';
+import { zIndexes } from 'styles/variables';
 import { heights } from 'styles/variables';
 import VelaStationPanel from 'components/organizms/heros/VelaStationPanel';
 import AbductedTierSystemPanel from 'components/organizms/heros/AbductedTierSystemPanel';
@@ -7,6 +8,7 @@ import TokenomicsPanel from 'components/organizms/heros/TokenomicsPanel';
 import LaunchPadOfThePastPanel from 'components/organizms/heros/LaunchPadOfThePastPanel';
 import MenuSelector from 'components/molecules/MenuSelector';
 import { getSelectMenuState } from 'contexts/SelectMenuContext';
+import PanelSwitcher from 'components/organizms/PanelSwitcher';
 
 const HomeStyled = styled.div`
   .home {
@@ -17,6 +19,7 @@ const HomeStyled = styled.div`
     grid-template-rows: 0px 1fr ${heights.menuSelector};
 
     &__menu-selector {
+      z-index: ${zIndexes.menuSelector};
       grid-column: 1 / 2;
       grid-row: 3 / 4;
     }
@@ -44,7 +47,12 @@ const Home: NextPage = () => {
   return (
     <HomeStyled>
       <div className='home'>
-        { switchMenu() }
+        <PanelSwitcher>
+          <VelaStationPanel />
+          <AbductedTierSystemPanel />
+          <TokenomicsPanel />
+          <LaunchPadOfThePastPanel />
+        </PanelSwitcher>
         <div className='home__menu-selector'>
           <MenuSelector />
         </div>

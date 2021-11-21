@@ -1,3 +1,9 @@
+const breakPoints = {
+  desktop: 1024,
+  tablet: 800,
+  phone: 480,
+}
+
 const colors = {
   white: '#fff',
   black: '#222',
@@ -20,7 +26,14 @@ const heights = {
 }
 
 const zIndexes = {
-  heroImage: -1
+  menuSelector: 20,
+  currentPanel: -10,
+  nextPanel: -11,
+  linearEffect: -87,
+  tvStaticEffect: -88,
+  glitchEffect: -89,
+  vsTransitionEffect: -99,
+  heroImage: -100
 }
 
-export { colors, fontSizes, heights, zIndexes };
+export { breakPoints, colors, fontSizes, heights, zIndexes };
