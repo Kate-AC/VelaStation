@@ -43,8 +43,8 @@ const PanelSwitcherStyled = styled.div`
 const PanelSwitcher = (props: { children: React.ReactNode }) => {
   const panelList: any = props.children;
   const { clickedMenu } = getSelectMenuState();
-  const [currentPanel, setCurrentPanel] = useState(panelList[clickedMenu - 1]);
-  const [nextPanel, setNextPanel] = useState(panelList[clickedMenu - 1]);
+  const [currentPanel, setCurrentPanel] = useState(cloneElement(panelList[clickedMenu - 1], { stop: true }));
+  const [nextPanel, setNextPanel] = useState(cloneElement(panelList[clickedMenu - 1], { stop: true }));
   const [fadeOut, setFadeOut] = useState(false);
 
   useEffect(() => {
