@@ -19,7 +19,7 @@ const TvStaticStyled = styled.div.attrs((props: { opacity: number }) => ({
       background-size: 5px 5px;
       filter: url(#noise);
       opacity: ${props => props.opacity};
-      mix-blend-mode: exclusion;
+      mix-blend-mode: screen;
       z-index: ${zIndexes.tvStaticEffect};
 
       svg {
@@ -31,9 +31,9 @@ const TvStaticStyled = styled.div.attrs((props: { opacity: number }) => ({
 `;
 
 const MIN_OPACITY = 0;
-const MAX_OPACITY = 0.8;
-const ABS_OPACITY = 0.1;
-const CYCLE_OPACITY = 100;
+const MAX_OPACITY = 0.5;
+const ABS_OPACITY = 0.08;
+const CYCLE_OPACITY = 120;
 
 const TvStatic = (props: { children: React.ReactElement, delay?: number, reverse?: boolean }) => {
   const delay = props.delay === undefined ? 0 : props.delay;
