@@ -48,7 +48,7 @@ const rgbScramble = (name: string) => {
     const percent: number = i * glitchInterval;
     transformList.push(`
       ${percent + '%'} {
-        transform: translate(${random(-0.5, 0.5) + '%'}, ${random(-0.2, 0.2) + '%'});
+        transform: translate(${random(-1, 1) + '%'}, ${random(-1, 1) + '%'});
       }
     `);
   }
@@ -64,7 +64,7 @@ const rgbScramble = (name: string) => {
 
 const glitch = (name: string) => {
   const animationDuration: number = 0.6;
-  const glitchFrequency: number = 18;
+  const glitchFrequency: number = 10;
   const glitchInterval: number = random(0, 10);
 
   const animationName: string = 'glitch' + name;

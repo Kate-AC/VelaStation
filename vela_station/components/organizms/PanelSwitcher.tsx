@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { getSelectMenuState } from 'contexts/SelectMenuContext';
 import { useState, useEffect, cloneElement } from 'react';
 import { zIndexes } from 'styles/variables';
+import VelaStationPanel from './heros/VelaStationPanel';
 
 const PanelSwitcherStyled = styled.div`
   @keyframes fadeOut {
@@ -43,8 +44,8 @@ const PanelSwitcherStyled = styled.div`
 const PanelSwitcher = (props: { children: React.ReactNode }) => {
   const panelList: any = props.children;
   const { clickedMenu } = getSelectMenuState();
-  const [currentPanel, setCurrentPanel] = useState(cloneElement(panelList[clickedMenu - 1], { stop: true }));
-  const [nextPanel, setNextPanel] = useState(cloneElement(panelList[clickedMenu - 1], { stop: true }));
+  const [currentPanel, setCurrentPanel] = useState(<VelaStationPanel stop={true} />);
+  const [nextPanel, setNextPanel] = useState(<VelaStationPanel stop={true} />);
   const [fadeOut, setFadeOut] = useState(false);
 
   useEffect(() => {
