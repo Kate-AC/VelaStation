@@ -7,7 +7,6 @@ import AbductedTierSystemPanel from 'components/organizms/heros/AbductedTierSyst
 import TokenomicsPanel from 'components/organizms/heros/TokenomicsPanel';
 import LaunchPadOfThePastPanel from 'components/organizms/heros/LaunchPadOfThePastPanel';
 import MenuSelector from 'components/molecules/MenuSelector';
-import { getSelectMenuState } from 'contexts/SelectMenuContext';
 import PanelSwitcher from 'components/organizms/PanelSwitcher';
 
 const HomeStyled = styled.div`
@@ -27,23 +26,6 @@ const HomeStyled = styled.div`
 `;
 
 const Home: NextPage = () => {
-  const { clickedMenu } = getSelectMenuState();
-
-  const switchMenu = () => {
-    switch (clickedMenu) {
-      case 1:
-        return <VelaStationPanel />;
-      case 2:
-        return <AbductedTierSystemPanel />;
-      case 3:
-        return <TokenomicsPanel />;
-      case 4:
-        return <LaunchPadOfThePastPanel />;
-      default:
-        return <VelaStationPanel />;
-    }
-  }
-
   return (
     <HomeStyled>
       <div className='home'>
