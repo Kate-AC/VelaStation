@@ -111,7 +111,7 @@ const VelaStationPanel = (props: { delay?: number; stop?: boolean; }) => {
         </div>
 
         <VSTransition stop={stop}>
-          <ZoomOut delay={delay}>
+          <ZoomOut delay={0}>
             <img src='/images/hero/hero01.jpg' alt='This is the hero image number 1.' />
           </ZoomOut>
         </VSTransition>

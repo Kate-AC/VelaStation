@@ -1,6 +1,14 @@
 import styled from 'styled-components';
 import { zIndexes } from 'styles/variables';
-import { rgbScramble, glitch } from 'styles/mixins';
+import {
+  rgbScramble,
+  glitch,
+  fixedGlitchBefore,
+  fixedGlitchAfter,
+  fixedRgbScranbleR,
+  fixedRgbScranbleG,
+  fixedRgbScranbleB
+} from 'styles/mixins';
 import { useState, useEffect, useRef } from 'react';
 import { clearInterval, setInterval } from 'timers';
 
@@ -36,12 +44,14 @@ const GlitchStyled = styled.div.attrs((props: { opacity: number }) => ({
       }
 
       &::before {
-        ${glitch('Before')};
+        ${fixedGlitchBefore}
+        /* ${glitch('Before')}; */
         content: "";
       }
 
       &::after {
-        ${glitch('After')};
+        ${fixedGlitchAfter}
+        /* ${glitch('After')}; */
         content: "";
       }
 
@@ -61,21 +71,24 @@ const GlitchStyled = styled.div.attrs((props: { opacity: number }) => ({
       }
 
       .r {
-        ${rgbScramble('R')};
+        ${fixedRgbScranbleR}
+        /*${rgbScramble('R')};*/
         &::before {
           background: #f00;
         }
       }
 
       .g {
-        ${rgbScramble('G')};
+        ${fixedRgbScranbleG}
+        /* ${rgbScramble('G')}; */
         &::before {
           background: #0f0;
         }
       }
 
       .b {
-        ${rgbScramble('B')};
+        ${fixedRgbScranbleB}
+       /*  ${rgbScramble('B')}; */
         &::before {
           background: #00f;
         }
