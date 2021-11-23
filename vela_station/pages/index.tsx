@@ -19,6 +19,10 @@ const HomeStyled = styled.div`
     grid-template-rows: 0px 1fr ${heights.menuSelector};
     font-size: 16px;
 
+    ${mediaDown('vga', css`
+      grid-template-rows: 0px 1fr ${heights.menuSelector} 40px;
+    `)};
+
     &__panel-list {
       ${mediaDown('xga', css`
         font-size: 14px;
@@ -33,6 +37,10 @@ const HomeStyled = styled.div`
       z-index: ${zIndexes.menuSelector};
       grid-column: 1 / 2;
       grid-row: 3 / 4;
+
+      ${mediaDown('vga', css`
+        grid-row: 3 / 5;
+      `)};
     }
   }
 `;

@@ -28,8 +28,8 @@ const AbductedTierSystemPanelStyled = styled.div`
     `)};
 
     ${mediaDown('vga', css`
-      grid-template-columns: 4% 25px 40px 200px 100px 4% 140px 1fr;
-      grid-template-rows: 270px 50px 20px ${fontSizes.litleBig} 10px 110px 10px ${fontSizes.litleBig} 10px 40px 1fr;
+      grid-template-columns: 4% 25px 40px 200px 60px 1fr;
+      grid-template-rows: 100px 70px 20px ${fontSizes.litleBig} 10px 110px 10px ${fontSizes.litleBig} 10px 40px 1fr;
     `)};
 
     &__hero-title {
@@ -54,6 +54,12 @@ const AbductedTierSystemPanelStyled = styled.div`
 
       ${mediaDown('tablet', css`
         grid-column: 2 / 7;
+      `)};
+
+      ${mediaDown('vga', css`
+        grid-column: 2 / 6;
+        font-size: 0.9em;
+        line-height: 150%;
       `)};
     }
 

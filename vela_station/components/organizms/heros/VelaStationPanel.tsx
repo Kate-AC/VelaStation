@@ -34,8 +34,8 @@ const VelaStationPanelStyled = styled.div`
     `)};
 
     ${mediaDown('vga', css`
-      grid-template-columns: 4% 25px 0px 200px 100px 70px 1fr;
-      grid-template-rows: 200px 100px 40px ${fontSizes.litleBig} 10px 110px 10px ${fontSizes.litleBig} 10px 40px 40px 30px;
+      grid-template-columns: 4% 25px 0px 200px 100px 20px 1fr;
+      grid-template-rows: 90px 80px 40px ${fontSizes.litleBig} 10px 110px 10px ${fontSizes.litleBig} 10px 40px 40px 30px;
     `)};
 
     &__hero-title {
@@ -62,9 +62,10 @@ const VelaStationPanelStyled = styled.div`
         grid-column: 2 / 7;
       `)};
 
-      &--text {
-        line-height: 180%;
-      }
+      ${mediaDown('vga', css`
+        font-size: 0.9em;
+        line-height: 220%;
+      `)};
     }
 
     &__block-2 {

@@ -44,7 +44,6 @@ const GlassFrameStyled = styled.div`
         top: 10px;
         left: 25px;
       `)};
-
     }
   }
 `;

@@ -20,6 +20,10 @@ const MenuSelectorStyled = styled.div.attrs((props: { position: number; currentP
     height: 100%;
     width: 100vw;
 
+    ${mediaDown('vga', css`
+      padding: 20px 20px 80px 20px;
+    `)};
+
     &-wrapper {
       display: flex;
       width: calc(320px * 3 + 20px);

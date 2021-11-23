@@ -27,7 +27,7 @@ const TokenomicsPanelStyled = styled.div`
 
     ${mediaDown('xga', css`
       grid-template-columns: 18% 1fr 1fr 1fr 1fr 1fr;
-      grid-template-rows: 100px 50px 80px repeat(3, 100px) 50px 80px 1fr;
+      grid-template-rows: 100px 50px 40px repeat(3, 100px) 50px 80px 1fr;
     `)};
 
     &__hero-title {
