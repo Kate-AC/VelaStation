@@ -36,9 +36,11 @@ const MenuItemStyled = styled.div`
       }
 
       &--title {
-        text-overflow: ellipsis;
-        overflow: hidden;
-        width: 100px;
+        ${mediaDown('xga', css`
+          text-overflow: ellipsis;
+          overflow: hidden;
+          width: 100px;
+        `)};
       }
     }
 
