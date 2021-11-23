@@ -1,11 +1,10 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Image from 'next/image';
 import { colors, fontSizes } from 'styles/variables';
 import { getSelectMenuState } from 'contexts/SelectMenuContext';
+import { mediaDown } from 'styles/mixins';
 
 const MenuItemStyled = styled.div`
-  display: inline-block;
-
   .menu-item {
     cursor: pointer;
     width: 320px;
@@ -17,6 +16,11 @@ const MenuItemStyled = styled.div`
     transition-duration: 0.3s;
     position: relative;
     clip-path: polygon(0% 0%, 94% 0%, 100% 30%, 100% 100%, 0% 100%);
+    height: 70px;
+
+    ${mediaDown('xga', css`
+      width: 190px;
+    `)};
 
     &__content {
       display: flex;
@@ -32,7 +36,9 @@ const MenuItemStyled = styled.div`
       }
 
       &--title {
-        line-height: 60%;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        width: 100px;
       }
     }
 
@@ -62,12 +68,14 @@ const MenuItem = (props: MenuItemType & { clickEvent: () => void; }) => {
         ].join(' ')}
         onClick={ props.clickEvent }
       >
-        <Image
-          height={70}
-          width={70}
-          src={ props.thumbnail }
-          alt='This is each page thumbnail.'
-        />
+        <div className='menu-item__thumbnail'>
+          <Image
+            height={70}
+            width={70}
+            src={ props.thumbnail }
+            alt='This is each page thumbnail.'
+          />
+        </div>
         <div className='menu-item__content'>
           <div className='menu-item__content--number'>
             { '0' + props.number }

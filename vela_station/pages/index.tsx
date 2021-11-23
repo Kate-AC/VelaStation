@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { mediaDown } from 'styles/mixins';
 import { zIndexes } from 'styles/variables';
 import { heights } from 'styles/variables';
 import VelaStationPanel from 'components/organizms/heros/VelaStationPanel';
@@ -16,6 +17,17 @@ const HomeStyled = styled.div`
     height: 100vh;
     grid-template-columns: auto;
     grid-template-rows: 0px 1fr ${heights.menuSelector};
+    font-size: 16px;
+
+    &__panel-list {
+      ${mediaDown('xga', css`
+        font-size: 14px;
+      `)};
+
+      ${mediaDown('vga', css`
+        font-size: 10px;
+      `)};
+    }
 
     &__menu-selector {
       z-index: ${zIndexes.menuSelector};
@@ -29,12 +41,14 @@ const Home: NextPage = () => {
   return (
     <HomeStyled>
       <div className='home'>
-        <PanelSwitcher>
-          <VelaStationPanel />
-          <AbductedTierSystemPanel />
-          <TokenomicsPanel />
-          <LaunchPadOfThePastPanel />
-        </PanelSwitcher>
+        <div className='home__panel-list'>
+          <PanelSwitcher>
+            <VelaStationPanel />
+            <AbductedTierSystemPanel />
+            <TokenomicsPanel />
+            <LaunchPadOfThePastPanel />
+          </PanelSwitcher>
+        </div>
         <div className='home__menu-selector'>
           <MenuSelector />
         </div>

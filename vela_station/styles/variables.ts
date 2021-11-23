@@ -1,6 +1,9 @@
 const breakPoints = {
-  desktop: 1024,
+  uxga: 1600,
+  wxga: 1280,
+  xga: 1024,
   tablet: 800,
+  vga: 640,
   phone: 480,
 }
 
@@ -11,14 +14,14 @@ const colors = {
 }
 
 const fontSizes = {
-  small: '0.9rem',
-  default: '1rem',
-  litleBig: '1.2rem',
-  onePointSeven: '1.7rem',
-  double: '2rem',
-  twoPointFive: '2.5rem',
-  triple: '3rem',
-  quadruple: '4rem',
+  small: '0.9em',
+  default: '1em',
+  litleBig: '1.2em',
+  onePointSeven: '1.7em',
+  double: '2em',
+  twoPointFive: '2.5em',
+  triple: '3em',
+  quadruple: '4em',
 }
 
 const heights = {

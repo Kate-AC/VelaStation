@@ -1,10 +1,13 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import MenuItem, { MenuItemType } from 'components/atoms/menu/MenuItem';
 import { getSelectMenuState } from 'contexts/SelectMenuContext';
 import { useState, useEffect } from 'react';
+import { mediaDown } from 'styles/mixins';
+import { breakPoints } from 'styles/variables';
 
-const MenuSelectorStyled = styled.div.attrs((props: { position: number }) => ({
-  position: props.position
+const MenuSelectorStyled = styled.div.attrs((props: { position: number; currentPosition: number; }) => ({
+  position: props.position,
+  currentPosition: props.currentPosition
 }))`
   height: 100%;
 
@@ -25,34 +28,84 @@ const MenuSelectorStyled = styled.div.attrs((props: { position: number }) => ({
       position: relative;
       height: 80px;
 
+      ${mediaDown('xga', css`
+        width: calc(200px * 2);
+      `)};
+
       &__content {
         position: absolute;
+        display: flex;
+        margin-left: ${props => {
+          if (typeof window === 'undefined') {
+            return 0;
+          }
 
-        &.slideRight {
-          animation-name: slideRight;
+          if (window.innerWidth < breakPoints.xga) {
+            if (props.currentPosition === 2) return -100;
+            if (props.currentPosition === 3) return -300;
+            if (props.currentPosition === 4) return -400;
+            return 0;
+          } else {
+            if (props.currentPosition >= 3) return -330;
+            return 0;
+          }
+        }}px;
+
+        &.slidingLeft100,
+        &.slidingLeft200,
+        &.slidingLeft330,
+        &.slidingRight100,
+        &.slidingRight200,
+        &.slidingRight330 {
           animation-fill-mode: forwards;
-          animation-duration: 0.4s;
+          animation-duration: 0.8s;
           animation-timing-function: ease;
         }
-
-        &.slideLeft {
-          animation-name: slideLeft;
-          animation-fill-mode: forwards;
-          animation-duration: 0.4s;
-          animation-timing-function: ease;
+        &.slidingLeft100 {
+          animation-name: slidingLeft100;
+        }
+        &.slidingLeft200 {
+          animation-name: slidingLeft200;
+        }
+        &.slidingLeft330 {
+          animation-name: slidingLeft330;
+        }
+        &.slidingRight100 {
+          animation-name: slidingRight100;
+        }
+        &.slidingRight200 {
+          animation-name: slidingRight200;
+        }
+        &.slidingRight330 {
+          animation-name: slidingRight330;
         }
       }
     }
   }
 
-  @keyframes slideRight {
-    0% { left: -325px; }
-    100% { left: 0px; }
-  }
-
-  @keyframes slideLeft {
+  @keyframes slidingLeft100 {
     0% { left: 0; }
-    100% { left: -325px; }
+    100% { left: -100px; }
+  }
+  @keyframes slidingLeft200 {
+    0% { left: 0; }
+    100% { left: -200px; }
+  }
+  @keyframes slidingLeft330 {
+    0% { left: 0; }
+    100% { left: -330px; }
+  }
+  @keyframes slidingRight100 {
+    0% { left: 0; }
+    100% { left: 100px; }
+  }
+  @keyframes slidingRight200 {
+    0% { left: 0; }
+    100% { left: 200px; }
+  }
+  @keyframes slidingRight330 {
+    0% { left: 0; }
+    100% { left: 330px; }
   }
 `;
 
@@ -82,27 +135,47 @@ const menuList: MenuItemType[] = [
 const MenuSelector = () => {
   const { clickedMenu, setClickedMenu } = getSelectMenuState();
   const [currentMenu, setCurrentMenu] = useState(1);
-  const [animation, setAnimation] = useState('');
+  const [sliding, setSliding] = useState('');
 
   useEffect(() => {
-    if (currentMenu <= 2 && clickedMenu >= 3) {
-      setAnimation('slideLeft');
+    setClickedMenu(clickedMenu);
+
+    const diff = currentMenu - clickedMenu;
+    let slidingName = '';
+
+    if (window.innerWidth < breakPoints.xga) {
+      if (diff < 0) {
+        slidingName = clickedMenu === 2 || clickedMenu === 4 ? 'slidingLeft100' : 'slidingLeft200';
+      }
+  
+      if (diff > 0) {
+        slidingName = clickedMenu === 1 || clickedMenu === 3 ? 'slidingRight100' : 'slidingRight200';
+      }
+    } else {
+      if (diff < 0) {
+        slidingName = clickedMenu === 3 ? 'slidingLeft330' : '';
+      }
+  
+      if (diff > 0) {
+        slidingName = clickedMenu === 2 ? 'slidingRight330' : '';
+      }
     }
 
-    if (currentMenu >= 3 && clickedMenu <= 2) {
-      setAnimation('slideRight');
-    }
+    setSliding(slidingName);
 
-    setCurrentMenu(clickedMenu);
+    setTimeout(() => {
+      setSliding('');
+      setCurrentMenu(clickedMenu);
+    }, 1000);
   }, [clickedMenu]);
 
   return (
-    <MenuSelectorStyled>
+    <MenuSelectorStyled position={clickedMenu} currentPosition={currentMenu}>
       <div className='menu-selector'>
         <div className='menu-selector-wrapper'>
           <div className={[
             'menu-selector-wrapper__content',
-            animation
+            sliding
           ].join(' ')}>
             {
               menuList.map((item: MenuItemType, key: number) => (

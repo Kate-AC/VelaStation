@@ -2,34 +2,58 @@ import { css } from 'styled-components';
 import { CSSProp } from 'styled-components';
 import { breakPoints } from 'styles/variables';
 
-type DeviceType = 'desktop' | 'tablet' | 'phone';
+type DeviceType = 'uxga' | 'wxga' |'xga' | 'tablet' | 'vga' | 'phone';
 
 const mediaDown = (device: DeviceType, content: CSSProp): CSSProp => {
-  if (device == 'desktop') {
-    return css`
-      @media only screen and (max-width: ${breakPoints.desktop}) {
-        ${content}
-      }
-    `;
-  }
+  if (device == 'uxga') {
+    return css`
+      @media only screen and (max-width: ${breakPoints.uxga}px) {
+        ${content}
+      }
+    `;
+  }
 
-  if (device == 'tablet') {
-    return css`
-      @media only screen and (max-width: ${breakPoints.tablet}) {
-        ${content}
-      }
-    `;
-  }
+  if (device == 'wxga') {
+    return css`
+      @media only screen and (max-width: ${breakPoints.wxga}px) {
+        ${content}
+      }
+    `;
+  }
 
-  if (device == 'phone') {
-    return css`
-      @media only screen and (max-width: ${breakPoints.phone}) {
-        ${content}
-      }
-    `;
-  }
+  if (device == 'xga') {
+    return css`
+      @media only screen and (max-width: ${breakPoints.xga}px) {
+        ${content}
+      }
+    `;
+  }
 
-  return css``;
+  if (device == 'tablet') {
+    return css`
+      @media only screen and (max-width: ${breakPoints.tablet}px) {
+        ${content}
+      }
+    `;
+  }
+
+  if (device == 'vga') {
+    return css`
+      @media only screen and (max-width: ${breakPoints.vga}px) {
+        ${content}
+      }
+    `;
+  }
+
+  if (device == 'phone') {
+    return css`
+      @media only screen and (max-width: ${breakPoints.phone}px) {
+        ${content}
+      }
+    `;
+  }
+
+  return css``;
 };
 
 const random = (min: number, max: number): number => {

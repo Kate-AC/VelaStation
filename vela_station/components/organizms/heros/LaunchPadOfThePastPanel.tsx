@@ -1,11 +1,13 @@
-import styled from 'styled-components';
-import { fontSizes } from 'styles/variables';
+import styled, { css } from 'styled-components';
+import { fontSizes, breakPoints } from 'styles/variables';
+import { mediaDown } from 'styles/mixins';
 import TypeWriter from 'styles/effects/TypeWriter';
 import ZoomOut from 'styles/effects/ZoomOut';
 import DefaultButton from 'components/atoms/DefaultButton';
 import GlassFrame from 'components/molecules/GlassFrame';
 import Headline from 'components/atoms/Headline';
 import VSTransition from 'styles/effects/VSTransition';
+import { useState, useEffect } from 'react';
 
 const LaunchPadOfThePastPanelStyled = styled.div`
   .launch-pad {
@@ -15,6 +17,20 @@ const LaunchPadOfThePastPanelStyled = styled.div`
     width: 100vw;
     grid-template-columns: 150px 40px 40px 330px 370px 1fr;
     grid-template-rows: 270px 50px 20px ${fontSizes.litleBig} 10px 140px 10px 1fr;
+
+    ${mediaDown('xga', css`
+      grid-template-columns: 12% 40px 40px 200px 180px 4% 140px 1fr;
+    `)};
+
+    ${mediaDown('tablet', css`
+      grid-template-columns: 8% 40px 40px 200px 220px 90px 1fr;
+      grid-template-rows: 270px 50px 20px ${fontSizes.litleBig} 10px 165px 10px 1fr;
+    `)};
+
+    ${mediaDown('vga', css`
+      grid-template-columns: 4% 25px 40px 200px 100px 4% 140px 1fr;
+      grid-template-rows: 270px 50px 20px ${fontSizes.litleBig} 10px 110px 10px ${fontSizes.litleBig} 10px 40px 1fr;
+    `)};
 
     &__hero-title {
       grid-row: 2;
@@ -32,9 +48,14 @@ const LaunchPadOfThePastPanelStyled = styled.div`
       grid-column: 2 / 6;
       grid-row: 6;
 
-      &--text {
-        line-height: 180%;
-      }
+      ${mediaDown('xga', css`
+        grid-column: 2 / 8;
+      `)};
+
+      ${mediaDown('tablet', css`
+        grid-column: 2 / 7;
+        line-height: 150%;
+      `)};
     }
 
     &__block-2 {
@@ -46,6 +67,11 @@ const LaunchPadOfThePastPanelStyled = styled.div`
     &__button {
       grid-column: 5 / 6;
       grid-row: 8;
+
+      ${mediaDown('vga', css`
+        grid-column: 3 / 5;
+        grid-row: 10;
+      `)};
     }
   }
 `;
@@ -53,6 +79,17 @@ const LaunchPadOfThePastPanelStyled = styled.div`
 const LaunchPadOfThePastPanel = (props: { delay?: number; stop?: boolean; }) => {
   const delay: number = props.delay === undefined ? 0 : props.delay;
   const stop: boolean = props.stop === undefined ? false : props.stop;
+
+  const [stepDown, setStepDown] = useState(false);
+
+  const resizeEvent = () => {
+    setStepDown(window.innerWidth < breakPoints.tablet);
+  }
+    
+  useEffect(() => {
+    resizeEvent();
+    window.addEventListener('resize', resizeEvent);
+  }, []);
 
   return (
     <LaunchPadOfThePastPanelStyled>
@@ -65,12 +102,24 @@ const LaunchPadOfThePastPanel = (props: { delay?: number; stop?: boolean; }) => 
         </div>
         <div className='launch-pad__frame'>
           <GlassFrame>
-            <div className='launch-pad__frame-text'>
-              <TypeWriter text='The ideal platform for all terrans to come see us display the best and' duration={3} delay={1.5 + delay} /><br />
-              <TypeWriter text='most unnoticed spaceships that are about to take off to distant stars.' duration={3} delay={4.5 + delay} /><br />
-              <TypeWriter text='Our noble race feels that without the proper security protocols in place,' duration={3} delay={7.5 + delay} /><br />
-              <TypeWriter text='and marketing they may face grave danger on the way.' duration={3} delay={10.5 + delay} />
-            </div>
+            {
+              stepDown ? (
+                <div className='tier-system-panel__frame-text'>
+                  <TypeWriter text='The ideal platform for all terrans to come see us' duration={2.3} delay={1.5 + delay} /><br />
+                  <TypeWriter text='display the best and most unnoticed spaceships that' duration={2.3} delay={3.8 + delay} /><br />
+                  <TypeWriter text='are about to take off to distant stars. Our noble race' duration={2.3} delay={6.1 + delay} /><br />
+                  <TypeWriter text='feels that without the proper security protocols in place,' duration={2.3} delay={8.8 + delay} />
+                  <TypeWriter text='and marketing they may face grave danger on the way.' duration={2.3} delay={11.1 + delay} />
+                </div>
+              ) : (
+                <div className='launch-pad__frame-text'>
+                  <TypeWriter text='The ideal platform for all terrans to come see us display the best and' duration={3} delay={1.5 + delay} /><br />
+                  <TypeWriter text='most unnoticed spaceships that are about to take off to distant stars.' duration={3} delay={4.5 + delay} /><br />
+                  <TypeWriter text='Our noble race feels that without the proper security protocols in place,' duration={3} delay={7.5 + delay} /><br />
+                  <TypeWriter text='and marketing they may face grave danger on the way.' duration={3} delay={10.5 + delay} />
+                </div>
+              )
+            }
           </GlassFrame>
         </div>
         <div className='launch-pad__block-2'>

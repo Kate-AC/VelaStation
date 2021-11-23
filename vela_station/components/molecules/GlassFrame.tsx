@@ -1,5 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { mediaDown } from 'styles/mixins';
 
 const GlassFrameStyled = styled.div`
   .glass-frame {
@@ -13,7 +14,19 @@ const GlassFrameStyled = styled.div`
       backdrop-filter: blur(12px);
       transform:skewX(-10deg);
       height: calc(100px + 40px);
-      
+
+      ${mediaDown('xga', css`
+        height: 130px;
+      `)};
+
+      ${mediaDown('tablet', css`
+        height: 165px;
+      `)};
+
+      ${mediaDown('vga', css`
+        height: 110px;
+      `)};
+
       * {
         color: rgba(0,0,0,0);
       }
@@ -26,6 +39,12 @@ const GlassFrameStyled = styled.div`
       position: absolute;
       top: 20px;
       left: 40px;
+
+      ${mediaDown('vga', css`
+        top: 10px;
+        left: 25px;
+      `)};
+
     }
   }
 `;
